@@ -40,7 +40,7 @@ const Index = () => {
       id: 1,
       name: 'Анна Смирнова',
       username: '@anna_sm',
-      avatar: '👩‍💼',
+      avatar: 'https://cdn.poehali.dev/projects/593e3be2-eb51-48c7-9b6b-524ceee170a4/files/4bb2d96b-19ec-4bbf-9824-e4ed945be75f.jpg',
       lastMessage: 'Отлично, жду встречи!',
       time: '14:32',
       unread: 2,
@@ -51,7 +51,7 @@ const Index = () => {
       id: 2,
       name: 'Команда разработки',
       username: '@dev_team',
-      avatar: '👨‍💻',
+      avatar: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=400&fit=crop',
       lastMessage: 'Дмитрий: Релиз готов к тестированию',
       time: '13:15',
       unread: 5,
@@ -61,7 +61,7 @@ const Index = () => {
       id: 3,
       name: 'Михаил Петров',
       username: '@mikhail_designer',
-      avatar: '🧑‍🎨',
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop',
       lastMessage: 'Посмотри новый дизайн',
       time: '11:42',
       unread: 0,
@@ -71,7 +71,7 @@ const Index = () => {
       id: 4,
       name: 'Мама ❤️',
       username: '@mom',
-      avatar: '👩',
+      avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop',
       lastMessage: 'Ты: Приеду в выходные',
       time: 'Вчера',
       unread: 0,
@@ -81,7 +81,7 @@ const Index = () => {
       id: 5,
       name: 'Александр К.',
       username: '@alex_gamer',
-      avatar: '🎮',
+      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop',
       lastMessage: 'Го в игру вечером?',
       time: 'Вчера',
       unread: 0,
@@ -125,11 +125,11 @@ const Index = () => {
   ];
 
   const stories = [
-    { id: 1, name: 'Моя история', avatar: '😎', yours: true },
-    { id: 2, name: 'Анна', avatar: '👩‍💼', viewed: false },
-    { id: 3, name: 'Михаил', avatar: '🧑‍🎨', viewed: false },
-    { id: 4, name: 'Команда', avatar: '👨‍💻', viewed: true },
-    { id: 5, name: 'Мама', avatar: '👩', viewed: true }
+    { id: 1, name: 'Моя история', avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&h=400&fit=crop', yours: true },
+    { id: 2, name: 'Анна', avatar: 'https://cdn.poehali.dev/projects/593e3be2-eb51-48c7-9b6b-524ceee170a4/files/4bb2d96b-19ec-4bbf-9824-e4ed945be75f.jpg', viewed: false },
+    { id: 3, name: 'Михаил', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop', viewed: false },
+    { id: 4, name: 'Команда', avatar: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=400&fit=crop', viewed: true },
+    { id: 5, name: 'Мама', avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop', viewed: true }
   ];
 
   const handleSendMessage = () => {
@@ -185,8 +185,9 @@ const Index = () => {
                     } rounded-full`}
                   >
                     <Avatar className="w-14 h-14">
+                      <AvatarImage src={story.avatar} alt={story.name} />
                       <AvatarFallback className="text-2xl bg-gradient-to-br from-primary/10 to-secondary/10">
-                        {story.avatar}
+                        {story.name.charAt(0)}
                       </AvatarFallback>
                     </Avatar>
                     {story.yours && (
@@ -220,8 +221,9 @@ const Index = () => {
                   <div className="flex gap-3">
                     <div className="relative">
                       <Avatar className="w-12 h-12">
+                        <AvatarImage src={chat.avatar} alt={chat.name} />
                         <AvatarFallback className="text-2xl bg-gradient-to-br from-primary/10 to-secondary/10">
-                          {chat.avatar}
+                          {chat.name.charAt(0)}
                         </AvatarFallback>
                       </Avatar>
                       {chat.online && (
@@ -264,8 +266,9 @@ const Index = () => {
               <div className="bg-white dark:bg-[hsl(var(--card))] border-b border-border px-4 py-3 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <Avatar className="w-10 h-10">
+                    <AvatarImage src={chats.find((c) => c.id === selectedChat)?.avatar} alt={chats.find((c) => c.id === selectedChat)?.name} />
                     <AvatarFallback className="text-xl bg-gradient-to-br from-primary/10 to-secondary/10">
-                      {chats.find((c) => c.id === selectedChat)?.avatar}
+                      {chats.find((c) => c.id === selectedChat)?.name.charAt(0)}
                     </AvatarFallback>
                   </Avatar>
                   <div>
