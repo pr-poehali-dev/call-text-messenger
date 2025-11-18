@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import Icon from '@/components/ui/icon';
+import AuthModal from '@/components/AuthModal';
 
 interface Chat {
   id: number;
@@ -27,6 +28,8 @@ interface Message {
 }
 
 const Index = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(true);
   const [activeTab, setActiveTab] = useState<'chats' | 'calls' | 'contacts' | 'stories' | 'profile'>('chats');
   const [selectedChat, setSelectedChat] = useState<number | null>(1);
   const [messageInput, setMessageInput] = useState('');
@@ -128,6 +131,16 @@ const Index = () => {
       setMessageInput('');
     }
   };
+
+  if (!isAuthenticated) {
+    return (
+      <AuthModal
+        open={showAuthModal}
+        onOpenChange={setShowAuthModal}
+        onAuthSuccess={() => setIsAuthenticated(true)}
+      />
+    );
+  }
 
   return (
     <div className="h-screen flex flex-col bg-gradient-to-br from-[hsl(var(--chat-bg))] to-[hsl(var(--background))]">
