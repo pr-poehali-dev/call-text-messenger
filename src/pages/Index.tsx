@@ -11,6 +11,7 @@ import AuthModal from '@/components/AuthModal';
 interface Chat {
   id: number;
   name: string;
+  username: string;
   avatar: string;
   lastMessage: string;
   time: string;
@@ -38,6 +39,7 @@ const Index = () => {
     {
       id: 1,
       name: 'Анна Смирнова',
+      username: '@anna_sm',
       avatar: '👩‍💼',
       lastMessage: 'Отлично, жду встречи!',
       time: '14:32',
@@ -48,6 +50,7 @@ const Index = () => {
     {
       id: 2,
       name: 'Команда разработки',
+      username: '@dev_team',
       avatar: '👨‍💻',
       lastMessage: 'Дмитрий: Релиз готов к тестированию',
       time: '13:15',
@@ -57,6 +60,7 @@ const Index = () => {
     {
       id: 3,
       name: 'Михаил Петров',
+      username: '@mikhail_designer',
       avatar: '🧑‍🎨',
       lastMessage: 'Посмотри новый дизайн',
       time: '11:42',
@@ -66,6 +70,7 @@ const Index = () => {
     {
       id: 4,
       name: 'Мама ❤️',
+      username: '@mom',
       avatar: '👩',
       lastMessage: 'Ты: Приеду в выходные',
       time: 'Вчера',
@@ -75,6 +80,7 @@ const Index = () => {
     {
       id: 5,
       name: 'Александр К.',
+      username: '@alex_gamer',
       avatar: '🎮',
       lastMessage: 'Го в игру вечером?',
       time: 'Вчера',
@@ -224,7 +230,10 @@ const Index = () => {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between mb-1">
-                        <h3 className="font-semibold text-sm truncate">{chat.name}</h3>
+                        <div className="flex flex-col">
+                          <h3 className="font-semibold text-sm truncate">{chat.name}</h3>
+                          <span className="text-xs text-muted-foreground">{chat.username}</span>
+                        </div>
                         <span className="text-xs text-muted-foreground">{chat.time}</span>
                       </div>
                       <div className="flex items-center justify-between">
@@ -260,7 +269,12 @@ const Index = () => {
                     </AvatarFallback>
                   </Avatar>
                   <div>
-                    <h2 className="font-semibold">{chats.find((c) => c.id === selectedChat)?.name}</h2>
+                    <div className="flex items-center gap-2">
+                      <h2 className="font-semibold">{chats.find((c) => c.id === selectedChat)?.name}</h2>
+                      <span className="text-xs text-muted-foreground">
+                        {chats.find((c) => c.id === selectedChat)?.username}
+                      </span>
+                    </div>
                     <p className="text-xs text-muted-foreground">
                       {chats.find((c) => c.id === selectedChat)?.online ? (
                         <span className="text-[hsl(var(--online-green))]">онлайн</span>
